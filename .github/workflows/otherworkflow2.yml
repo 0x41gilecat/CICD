@@ -15,7 +15,7 @@ jobs:
         run: |
           mkdir out
           mkdir out/artefactdir
-          echo "data;data;data" > out/artefactdir/output.csv
+          echo "MYENV_VAR=value" > out/artefactdir/env
 
       - name: Upload persist key
         if: ${{ always() }}
