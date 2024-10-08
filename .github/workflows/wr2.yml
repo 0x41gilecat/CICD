@@ -32,4 +32,5 @@ jobs:
             cat output/artefactdir/env >> "$GITHUB_ENV"
         - name: process data
           run: |
+            env
             bash script.sh
