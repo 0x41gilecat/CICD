@@ -1,0 +1,31 @@
+name: Workflow run
+
+on:
+  workflow_run:
+    workflows: ["otherworkflow"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+setp1:
+    name: download artefacts
+    permissions:
+      actions: read 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: download image snapshot artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          run_id: ${{ github.event.workflow_run.id }}
+          name: myartefact
+
+      - name: process artefact
+        run: |
+          cat artefactdir/output.csv
+          bash script.sh
