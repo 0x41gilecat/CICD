@@ -1,0 +1,12 @@
+name: PRT1
+
+on:
+  pull_request_target:
+
+jobs:
+  prt1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+            head_branch="${{ github.event.pull_request.head.ref }}"
+            #dosomething with the branch
