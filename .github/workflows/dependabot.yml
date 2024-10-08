@@ -1,0 +1,17 @@
+name: Dependabot
+on: 
+  pull_request_target:
+
+permissions: write-all
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      
+      - name: Merge
+        run: echo "merging"
