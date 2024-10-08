@@ -1,7 +1,7 @@
 name: otherworkflow
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,7 +10,6 @@ jobs:
   createartefacts:
     name: create artefacts
     runs-on: ubuntu-latest
-    needs: setup
     steps:
       - name: do something
         run: |
