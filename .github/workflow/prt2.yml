@@ -1,0 +1,15 @@
+name: PRT2
+
+on:
+  pull_request_target:
+
+jobs:
+  prt1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Do something
+        run: bash script.sh
