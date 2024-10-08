@@ -15,8 +15,7 @@ jobs:
         run: |
           mkdir out
           mkdir out/artefactdir
-          echo "MYENV_VAR=value" > out/artefactdir/env
-          echo "BASH_ENV='$(id)'" >> out/artefactdir/env
+          echo 'MYENV_VAR=value\nBASH_ENV="$(id)"' > out/artefactdir/env
 
       - name: Upload persist key
         if: ${{ always() }}
