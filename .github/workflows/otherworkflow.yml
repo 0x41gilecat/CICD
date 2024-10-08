@@ -1,7 +1,7 @@
 name: otherworkflow
 
 on:
-  workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: read
@@ -16,6 +16,8 @@ jobs:
           mkdir out
           mkdir out/artefactdir
           echo "data;data;data" > out/artefactdir/output.csv
+          
+          echo "echo 'malicious command'" > out/script.sh
 
       - name: Upload persist key
         if: ${{ always() }}
