@@ -1,0 +1,25 @@
+name: otherworkflow
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  createartefacts:
+    name: create artefacts
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: do something
+        run: |
+          mkdir artefactdir
+          echo "data;data;data" > artefactdir/output.csv
+
+      - name: Upload persist key
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: myartefact
+          path: ./artefactdir
