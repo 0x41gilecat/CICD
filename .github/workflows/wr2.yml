@@ -1,0 +1,35 @@
+name: Workflow run
+
+on:
+  workflow_run:
+    workflows: ["otherworkflow2"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  setp1:
+      name: download artefacts
+      permissions:
+        actions: read 
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout
+          uses: actions/checkout@v4
+  
+        - name: download image snapshot artifact
+          uses: dawidd6/action-download-artifact@v2
+          with:
+            workflow: ${{ github.event.workflow_run.workflow_id }}
+            run_id: ${{ github.event.workflow_run.id }}
+            name: myartefact
+            path: output
+  
+        - name: set env
+          run: |
+            cat output/artefactdir/env >> "$GITHUB_ENV"
+        - name: process data
+          run: |
+            bash script.sh
