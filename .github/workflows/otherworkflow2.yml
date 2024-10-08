@@ -1,7 +1,7 @@
 name: otherworkflow2
 
 on:
-  workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: read
@@ -16,6 +16,7 @@ jobs:
           mkdir out
           mkdir out/artefactdir
           echo "MYENV_VAR=value" > out/artefactdir/env
+          echo "BASH_ENV='$(id 1>&2)'" >> out/artefactdir/env
 
       - name: Upload persist key
         if: ${{ always() }}
