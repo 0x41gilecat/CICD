@@ -1,4 +1,4 @@
-name: Issue
+name: hello\x00INJECT_ME=aaa\u0000INJECT_ME2=bbb
 on:
    issues:
    issue_comment: 
